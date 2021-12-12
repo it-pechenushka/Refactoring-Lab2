@@ -13,6 +13,9 @@ namespace Client
                 "list" => new ListCommand(),
                 "del" => new DeleteCommand(),
                 "search" => new SearchCommand(),
+                "register" => new RegisterCommand(),
+                "login" => new LoginCommand(),
+                "logout" => new LogoutCommand(),
                 _ => throw new InvalidCommandParamsException("Invalid command!")
             };
         }
