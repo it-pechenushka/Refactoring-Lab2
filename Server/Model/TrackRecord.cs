@@ -15,6 +15,9 @@ namespace Server.Model
         [Column("composition"), Required(AllowEmptyStrings = false)]
         public string Composition { set; get; }
 
+        [Column("created_by"), Required]
+        public UserRecord CreatedBy { set; get; }
+
         public override string ToString()
         {
             return $"{Author} - {Composition}";

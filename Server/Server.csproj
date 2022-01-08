@@ -6,7 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Client\Client.csproj" />
-      <ProjectReference Include="..\Common\Common.csproj" />
+      <ProjectReference Include="..\Dto\Dto.csproj" />
     </ItemGroup>
 
     <ItemGroup>

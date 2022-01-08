@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Client.Helpers;
+using Dto;
 using static Client.Helpers.InformationMessageStore;
 
 namespace Client.Commands
@@ -23,7 +23,8 @@ namespace Client.Commands
             var responseData = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
-                var result = JsonSerializer.Deserialize<IList<TrackInfo>>(responseData);
+                PrintInfo(ListCommandMessage);
+                var result = JsonSerializer.Deserialize<IList<TrackDto>>(responseData);
                 if (result != null)
                 {
                     foreach (var track in result) 
@@ -33,7 +34,10 @@ namespace Client.Commands
                     PrintInfo(NotFoundResultMessage);
             }
             else
+            {
+                PrintInfo(response.StatusCode.ToString());
                 PrintInfo(responseData);
+            }
         }
     }
 }

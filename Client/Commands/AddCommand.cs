@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Client.Helpers;
+using Dto;
 using static Client.Helpers.InformationMessageStore;
 
 namespace Client.Commands
@@ -10,7 +10,7 @@ namespace Client.Commands
     {
         public override async Task Execute(HttpClient client)
         {
-            var track = new TrackInfo();
+            var track = new TrackDto();
             PrintInfo(InputAuthorMessage);
             track.Author = InputCommandData();
             PrintInfo(InputCompositionMessage);
@@ -21,7 +21,10 @@ namespace Client.Commands
             if (response.IsSuccessStatusCode)
                 PrintInfo(string.Format(AddSuccessCommandMessage, $"\"{track.Author} - {track.Composition}\""));
             else
+            {
+                PrintInfo(response.StatusCode.ToString());
                 PrintInfo(await response.Content.ReadAsStringAsync());
+            }
         }
     }
 }
